@@ -1,28 +1,57 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import {withRouter, Route} from 'react-router-dom'
+import {connect} from 'react-redux'
+import Profile from './container/Profile'
+import Meetups from './container/Meetups'
+import Login from './form/login'
+import Signup from './form/signup'
+import NavBar from './navbar'
+import Logo from './Logo'
+import Hackathons from './container/Hackathon'
 class App extends Component {
+
+  componentDidMount = () => {
+   let token = localStorage.getItem("token");
+   if (token) {
+     fetch("http://localhost:3000/current_user", {
+       headers: {
+         "Content-Type": "application/json",
+         Accepts: "application/json",
+         Authorization: token
+       }
+     })
+       .then(resp => resp.json())
+       .then(resp => {
+        console.log(resp)
+       });
+   } else {
+     this.props.history.push("/signup");
+   }
+
+};
+  // <div className="theApp"> For Background black color
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    <React.Fragment>
+      <Logo />
+
+      <NavBar />
+      <br />
+      <Route path="/profile" component={Profile} />
+      <Route path="/meetups" component={Meetups} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/hackathons" component={Hackathons} />
+
+    </React.Fragment>
     );
   }
 }
-
-export default App;
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    addUser:(user)=> dispatch({type:"ADD_USER",payload:user})
+  }
+}
+export default  withRouter(connect(null,mapDispatchToProps)(App));

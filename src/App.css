@@ -30,3 +30,55 @@
     transform: rotate(360deg);
   }
 }
+
+.odd {
+
+  animation: colorchangeOdd 750ms infinite; /* animation-name followed by duration in seconds*/
+     /* you could also use milliseconds (ms) or something like 2.5s */
+  -webkit-animation: colorchangeOdd 750ms infinite; /* Chrome and Safari */
+  display: inline;
+    font-family: "miltown"
+}
+
+@keyframes colorchangeOdd
+{
+  0%   {color: black;}
+
+  100% {color: green;}
+}
+
+@-webkit-keyframes colorchangeOdd /* Safari and Chrome - necessary duplicate */
+{
+  0%   {color: black;}
+
+  100% {color: green;}
+}
+
+.even{
+  animation: colorchangeEven 750ms infinite; /* animation-name followed by duration in seconds*/
+     /* you could also use milliseconds (ms) or something like 2.5s */
+  -webkit-animation: colorchangeEven 750ms infinite; /* Chrome and Safari */
+  display: inline;
+  font-family: "miltown"
+  }
+
+  @keyframes colorchangeEven
+  {
+  0%   {color: green;}
+
+  100% {color: black;}
+  }
+
+  @-webkit-keyframes colorchangeEven /* Safari and Chrome - necessary duplicate */
+  {
+  0%   {color: green;}
+
+  100% {color: black;}
+  }
+
+  .theApp{
+    background:black
+  }
+  #logo{
+    text-align:center;
+  }
