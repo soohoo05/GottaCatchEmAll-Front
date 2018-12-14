@@ -2,14 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {signUp} from '../action/actions'
 import {withRouter} from 'react-router-dom'
-import axios from 'axios'
 class Signup extends React.Component{
   state={
     name:'',
     username:'',
     password:'',
     email:'',
-    error:false
+
   }
 
   changeHandler = (e) =>{
@@ -21,24 +20,11 @@ class Signup extends React.Component{
   submitHandler = (e) =>{
 
     e.preventDefault()
-    axios.post(`http://localhost:3000/users`,{
-      user:{
-      name:this.state.name,
-      username:this.state.username,
-      password:this.state.password,
-      email:this.state.email
-    }
-  })
-    .then(json=>{
-      localStorage.setItem("token",json.data.jwt)
-      this.props.history.replace('/profile')
-      this.props.setUser(json.data.user)
-}).catch(error=>console.log(error))
-
+    this.props.setUser(this.state,this.props.history)
   }
   render(){
     return(<div>
-      {this.state.error ? <p>User already exists or fields were left blank</p> : null}
+
       <form onSubmit={this.submitHandler}>
         <label>Name</label>
         <input type="text" value={this.state.name} name="name" onChange={this.changeHandler} placeholder="Name" />
@@ -61,7 +47,7 @@ class Signup extends React.Component{
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    setUser: (user) =>{dispatch({type:'SET_USER',payload:user})}
+    setUser: (user,history) =>{dispatch(signUp(user,history))}
   }
 }
 

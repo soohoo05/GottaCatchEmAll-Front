@@ -18,8 +18,8 @@ class Login extends React.Component{
 
   submitHandler = (e) =>{
     e.preventDefault()
-    this.props.loginHandler(this.state)
-    this.props.history.replace('/profile')
+    this.props.loginHandler(this.state,this.props.history)
+
   }
   render(){
     return(
@@ -38,7 +38,7 @@ class Login extends React.Component{
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    loginHandler: (user) =>{dispatch(login(user))}
+    loginHandler: (user,history) =>{dispatch(login(user,history))}
   }
 }
 

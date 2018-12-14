@@ -3,13 +3,13 @@ import './App.css';
 
 import {withRouter, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
-import Profile from './container/Profile'
-import Meetups from './container/Meetups'
+import Profile from './routes/Profile'
+import Meetups from './routes/Meetups'
 import Login from './form/login'
 import Signup from './form/signup'
 import NavBar from './navbar'
 import Logo from './Logo'
-import Hackathons from './container/Hackathon'
+import Hackathons from './routes/Hackathon'
 class App extends Component {
 
   componentDidMount = () => {
@@ -24,7 +24,7 @@ class App extends Component {
      })
        .then(resp => resp.json())
        .then(resp => {
-        console.log(resp)
+        this.props.addUser(resp)
        });
    } else {
      this.props.history.push("/signup");
@@ -51,7 +51,7 @@ class App extends Component {
 }
 const mapDispatchToProps = (dispatch)=>{
   return{
-    addUser:(user)=> dispatch({type:"ADD_USER",payload:user})
+    addUser:(user)=> dispatch({type:"SET_USER",payload:user})
   }
 }
 export default  withRouter(connect(null,mapDispatchToProps)(App));

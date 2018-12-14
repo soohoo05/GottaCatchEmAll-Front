@@ -1,8 +1,11 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
-export default class Navbar extends React.Component{
+import {withRouter} from 'react-router-dom'
+class Logo extends React.Component{
+  handleHome = () =>{
+    this.props.history.replace("/")
+  }
 render(){
-  return(  <div id="logo">
+  return(  <div id="logo" onClick={this.handleHome}>
     <h1 className="odd">M</h1>
     <h1 className="even">E</h1>
     <h1 className="odd">E</h1>
@@ -15,3 +18,4 @@ render(){
     </div>)
 }
 }
+export default withRouter(Logo)
