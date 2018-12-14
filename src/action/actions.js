@@ -9,7 +9,6 @@ export const login = (theUser,history) => {
     }).then(json=>{
       localStorage.setItem("token",json.data.jwt)
       history.replace('/profile')
-      debugger
       dispatch({type:'SET_USER',payload:json.data.user})
     })
     .catch(error=>alert('Error, user not found or wrong password'))

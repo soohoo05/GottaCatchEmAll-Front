@@ -5,12 +5,11 @@ class Hackcontainer extends React.Component{
 
 
   render(){
-    console.log(this.props)
     let hackathons;
     if(this.props.userHackathons){
      hackathons=this.props.userHackathons.map(theHackathon=> <HackathonCard hackathon={theHackathon} key={theHackathon.id} />)
     }
-    else{
+    else if(this.props.hackathons){
      hackathons=this.props.hackathons.map(theHackathon => <HackathonCard hackathon={theHackathon} key={theHackathon.id} />)
   }
     return(

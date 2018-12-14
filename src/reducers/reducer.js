@@ -1,4 +1,4 @@
-let store={user:'',hackathons:[],selectedhackathon:null}
+let store={user:'',hackathons:[],selectedhackathon:null,fetchedHackathons:null}
 
 export default function reducer(state=store,action){
   switch(action.type){
@@ -10,6 +10,10 @@ export default function reducer(state=store,action){
       return {...state,selectedhackathon:action.payload}
       case 'CLEAR_DETAILS':
       return {...state,selectedhackathon:null}
+      case 'CLEAR_SEARCH':
+      return {...state,hackathons:null}
+      case 'FETCHED':
+      return {...state,fetchedHackathons:action.payload}
     default:
     return state
   }

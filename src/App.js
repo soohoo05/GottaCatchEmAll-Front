@@ -10,6 +10,7 @@ import Signup from './form/signup'
 import NavBar from './navbar'
 import Logo from './Logo'
 import Hackathons from './routes/Hackathon'
+import Home from './routes/Home'
 class App extends Component {
 
   componentDidMount = () => {
@@ -24,7 +25,7 @@ class App extends Component {
      })
        .then(resp => resp.json())
        .then(resp => {
-        this.props.addUser(resp)
+        this.props.addUser(resp.user)
        });
    } else {
      this.props.history.push("/signup");
@@ -39,12 +40,12 @@ class App extends Component {
 
       <NavBar />
       <br />
-      <Route path="/profile" component={Profile} />
-      <Route path="/meetups" component={Meetups} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/hackathons" component={Hackathons} />
-
+      <Route exact path="/" component={Home} />
+      <Route exact path="/profile" component={Profile} />
+      <Route exact path="/meetups" component={Meetups} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/hackathons" component={Hackathons} />
     </React.Fragment>
     );
   }
