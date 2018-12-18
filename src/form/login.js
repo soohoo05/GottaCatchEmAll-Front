@@ -1,45 +1,66 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {login} from '../action/actions'
-import {withRouter} from 'react-router-dom'
+import React from "react"
+import { connect } from "react-redux"
+import { login } from "../action/actions"
+import { withRouter } from "react-router-dom"
+import { Button, Form } from 'semantic-ui-react'
 
-class Login extends React.Component{
-  state={
-    username:'',
-    password:'',
+class Login extends React.Component {
+  state = {
+    username: "",
+    password: ""
   }
 
-
-  changeHandler = (e) =>{
+  changeHandler = (e) => {
     this.setState({
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
-  submitHandler = (e) =>{
+  submitHandler = (e) => {
     e.preventDefault()
-    this.props.loginHandler(this.state,this.props.history)
-
+    this.props.loginHandler(this.state, this.props.history)
   }
-  render(){
-    return(
-      <form onSubmit={this.submitHandler}>
-        <label>UserName</label>
-        <input type="text" value={this.state.username} name="username" onChange={this.changeHandler} placeholder="Username"/>
-        <br/>
-        <label>Password</label>
-        <input type="password" value={this.state.password} name="password" onChange={this.changeHandler} placeholder="Password"/>
-        <br/>
-        <input type="submit" value="Login"/>
-      </form>
+  render() {
+    return (
+      <div className="logindiv">
+      <Form onSubmit={this.submitHandler}>
+        <center><h1>Login</h1></center>
+        <Form.Input
+          label="Username"
+          type='text'
+          value={this.state.username}
+          name='username'
+          onChange={this.changeHandler}
+          placeholder='Username'
+        />
+        <br />
+        <Form.Input
+          label="Password"
+          type='password'
+          value={this.state.password}
+          name='password'
+          onChange={this.changeHandler}
+          placeholder='Password'
+        />
+        <br />
+        <Button color="black" type='submit'>Submit</Button>
+    </Form>
+    </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
-    loginHandler: (user,history) =>{dispatch(login(user,history))}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginHandler: (user, history) => {
+      dispatch(login(user, history))
+    }
   }
 }
 
-export default withRouter(connect(null,mapDispatchToProps)(Login))
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Login)
+)

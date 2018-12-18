@@ -1,53 +1,81 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {signUp} from '../action/actions'
-import {withRouter} from 'react-router-dom'
-class Signup extends React.Component{
-  state={
-    name:'',
-    username:'',
-    password:'',
-    email:'',
+import React from "react"
+import { connect } from "react-redux"
+import { signUp } from "../action/actions"
+import { withRouter } from "react-router-dom"
+import { Button, Form } from 'semantic-ui-react'
 
+class Signup extends React.Component {
+  state = {
+    name: "",
+    username: "",
+    password: "",
+    email: ""
   }
 
-  changeHandler = (e) =>{
+  changeHandler = (e) => {
     this.setState({
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
-  submitHandler = (e) =>{
-
+  submitHandler = (e) => {
     e.preventDefault()
-    this.props.setUser(this.state,this.props.history)
+    this.props.setUser(this.state, this.props.history)
   }
-  render(){
-    return(<div>
+  render() {
+    return (
+        <div className="logindiv">
 
-      <form onSubmit={this.submitHandler}>
-        <label>Name</label>
-        <input type="text" value={this.state.name} name="name" onChange={this.changeHandler} placeholder="Name" />
-        <br/>
-        <label>UserName</label>
-        <input type="text" value={this.state.username} name="username" onChange={this.changeHandler} placeholder="Username"/>
-        <br/>
-        <label>Password</label>
-        <input type="password" value={this.state.password} name="password" onChange={this.changeHandler} placeholder="Password"/>
-        <br/>
-        <label>Email</label>
-        <input type="text" value={this.state.email} name="email" onChange={this.changeHandler} placeholder="Email"/>
-        <br/>
-        <input type="submit" value="Signup"/>
-      </form>
-    </div>
+        <Form onSubmit={this.submitHandler}>
+        <center><h1>Sign Up</h1></center>
+          <Form.Input
+            label="Name"
+            type='text'
+            value={this.state.name}
+            name='name'
+            onChange={this.changeHandler}
+            placeholder='Name'
+          />
+          <br />
+          <Form.Input
+            label="Username"
+            type='text'
+            value={this.state.username}
+            name='username'
+            onChange={this.changeHandler}
+            placeholder='Username'
+          />
+          <br />
+          <Form.Input
+            label="Password"
+            type='password'
+            value={this.state.password}
+            name='password'
+            onChange={this.changeHandler}
+            placeholder='Password'
+          />
+          <br />
+          <Form.Input
+            label="Email"
+            type='text'
+            value={this.state.email}
+            name='email'
+            onChange={this.changeHandler}
+            placeholder='Email'
+          />
+          <br />
+              <Button color="black" type='submit'>Submit</Button>
+        </Form>
+      </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
-    setUser: (user,history) =>{dispatch(signUp(user,history))}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUser: (user, history) => {
+      dispatch(signUp(user, history))
+    }
   }
 }
 

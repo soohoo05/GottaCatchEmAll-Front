@@ -1,22 +1,43 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import Hackhomecard from '../cards/Hackhomecard'
-class Homecontainer extends React.Component{
-  render(){
+import React from "react"
+import { connect } from "react-redux"
+import Hackhomecard from "../cards/Hackhomecard"
+class Homecontainer extends React.Component {
+  componentWillUnmount() {
+    this.props.deleteHackDetails()
+  }
+  render() {
     let renderedHomeCards
-    if(this.props.all){
-      renderedHomeCards=this.props.all.map(hackathon => <Hackhomecard hackathon={hackathon} />)
+    if (this.props.all) {
+      renderedHomeCards = this.props.all.map((hackathon) => (
+        <Hackhomecard hackathon={hackathon} key={hackathon.id}/>
+      ))
     }
-    return(this.props.all ? <div>{renderedHomeCards}</div> : <div><div className="loader"></div><h1>Loading</h1></div>)
+    if (this.props.all) {
+      if (this.props.all.length !== 0) {
+        return (
+          <div>
+            {renderedHomeCards}
+
+          </div>
+        )
+      } else {
+        return <h1 className="headerh1">No Hackathons being attended</h1>
+      }
+    } else {
+      return null
+    }
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
-    all:state.fetchedHackathons
+    all: state.fetchedHackathons
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteHackDetails: () => dispatch({ type: "CLEAR_DETAILS" })
   }
 }
 
-
-export default connect(mapStateToProps)(Homecontainer)
+export default connect(mapStateToProps,mapDispatchToProps)(Homecontainer)
