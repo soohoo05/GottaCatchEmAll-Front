@@ -2,7 +2,23 @@
 <html lang="en" >
   <head>
     <meta charset="utf-8">
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 
+      <script>cloudinary.setCloudName(deq2mkfpe);</script>
+
+      <script type="text/javascript">
+
+      var myUploadWidget;
+
+      document.getElementById("upload_widget_opener").addEventListener("click", function() {
+
+        myUploadWidget = cloudinary.openUploadWidget({
+
+      cloudName: dz1dbcszc, uploadPreset: 'igzkbflf'}, (error, result) => { });
+
+    }, false);
+
+    </script>
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -20,9 +36,11 @@
     <title>MeetHaxor</title>
   </head>
   <body  class="body">
+
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <div id="b4root"></div>
     <div id="root"></div>
     <!--
       This HTML file is a template.

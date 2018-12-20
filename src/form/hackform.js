@@ -14,7 +14,7 @@ class Hackform extends React.Component {
 
   handleLocation = (e) => {
     if (e.target.value === "---") {
-      this.setState({ location: null })
+      this.setState({ location: "" })
     }else{
     this.setState({ location: e.target.value })
   }
@@ -35,7 +35,11 @@ class Hackform extends React.Component {
       (this.state.toDate.length === 0 && this.state.fromDate.length !== 0)
     ) {
       alert("Invalid date Range")
-    } else {
+    }
+      else if(this.state.toDate.length===0 && this.state.fromDate.length===0 && this.state.location.length===0 && this.state.free==="either"){
+        alert("At least one parameter needed")
+      }
+     else {
       this.props.submitQuery(this.state)
     }
   }

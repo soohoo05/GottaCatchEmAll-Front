@@ -43,7 +43,9 @@ class Login extends React.Component {
           placeholder='Password'
         />
         <br />
-        <Button color="black" type='submit'>Submit</Button>
+        <center>
+          <Button color="black" type='submit'>Submit</Button>
+        </center>
     </Form>
     </div>
     )

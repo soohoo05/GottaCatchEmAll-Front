@@ -20,7 +20,8 @@ export const signUp = (user, history) => {
   return (dispatch) => {
     return axios
       .post(`http://localhost:3000/users`, {
-        user: user
+        user: user,
+        img :'https://ak1.picdn.net/shutterstock/videos/16685851/thumb/1.jpg'
       })
       .then((json) => {
         localStorage.setItem("token", json.data.jwt)
@@ -35,5 +36,16 @@ export const fetchUsers = () =>{
   return (dispatch) => {
     return axios.get('http://localhost:3000/users')
     .then(resp => dispatch({type:"SET_USERS",payload: resp.data.users}))
+  }
+}
+
+export const changePicture = (picture,userId) => {
+  return (dispatch) => {
+    return axios.patch(`http://localhost:3000/users/${userId}`,{
+      user:{
+        img:picture
+      }
+    })
+    .then(resp => dispatch({type:"SET_USER",payload:resp.data}))
   }
 }

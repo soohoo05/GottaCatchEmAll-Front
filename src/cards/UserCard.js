@@ -7,6 +7,9 @@ class Usercard extends React.Component{
     return(
       <div className="userDiv">
         <div>
+          <img src={user.img} alt="profile" height="250px" width="250px" className="ProImg"/>
+        </div>
+        <div>
           <h1>Name: {user.name}</h1>
         </div>
         <div>

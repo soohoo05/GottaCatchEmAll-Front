@@ -3,15 +3,28 @@ import { connect } from "react-redux"
 import { signUp } from "../action/actions"
 import { withRouter } from "react-router-dom"
 import { Button, Form } from 'semantic-ui-react'
+import {CloudinaryContext} from 'cloudinary-react';
 
 class Signup extends React.Component {
   state = {
     name: "",
     username: "",
     password: "",
-    email: ""
+    email: "",
+    img:"https://ak1.picdn.net/shutterstock/videos/16685851/thumb/1.jpg"
   }
-
+  imageSubmit = () => {
+   var myUploadWidget;
+     myUploadWidget = window.cloudinary.openUploadWidget({
+       cloudName: 'dz1dbcszc',
+       uploadPreset: 'igzkbflf'},
+       (error, result) => {
+         if (result.info.secure_url){
+        this.setState({img:result.info.secure_url})
+           }
+         }
+       );
+  }
   changeHandler = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -64,7 +77,14 @@ class Signup extends React.Component {
             placeholder='Email'
           />
           <br />
-              <Button color="black" type='submit'>Submit</Button>
+            <CloudinaryContext cloudName='dz1dbcszc' className="signupbuttons">
+              <Button className="fluid" color="black" id='upload_widget_opener' onClick={this.imageSubmit}>Upload a picture</Button>
+            </CloudinaryContext>
+          <br/>
+          <div className="signupbuttons">
+            <Button className="fluid" color="black" type='submit'>Submit</Button>
+          </div>
+
         </Form>
       </div>
     )

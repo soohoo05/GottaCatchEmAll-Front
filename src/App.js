@@ -13,6 +13,7 @@ import Home from "./routes/Home"
 import NoMatch from './routes/NoMatch.js'
 import Users from './routes/Users'
 import UsersDisplay from './routes/UsersDisplay'
+import HackAdd from './form/hackadd'
 class App extends Component {
 
   componentDidMount = () => {
@@ -37,9 +38,10 @@ class App extends Component {
   render() {
 
     return (
-      <div className="whole">
+      <div>
         <Logo />
         <NavBar />
+        
         <center className="music"><iframe src="https://open.spotify.com/embed/artist/45eNHdiiabvmbp4erw26rg" width="300" height="80"  allowtransparency="true" allow="encrypted-media"></iframe></center>
         <br />
         <Switch>
@@ -50,6 +52,7 @@ class App extends Component {
         <Route exact path='/hackathons' component={Hackathons} />
         <Route exact path ='/users' component={Users} />
           <Route exact path='/user/:username' component={UsersDisplay} />
+          <Route exact path='/addahackathon' component={HackAdd} />
             <Route component={NoMatch} />
 
         </Switch>

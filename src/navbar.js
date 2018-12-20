@@ -38,6 +38,14 @@ color: 'white'}}>Hackers</NavLink> :null }
                 outline:'white',
                 textDecoration: 'none',
 color: 'white'}}>Hackathons</NavLink> :null }
+{this.props.user ?    <NavLink to="/addahackathon" className="navlink" exact style={{width: '100px',
+    padding: '12px',
+    margin: '0 6px 6px',
+    background: 'black',
+    borderRadius: '5px',
+    outline:'white',
+    textDecoration: 'none',
+color: 'white'}}>Add a Hackathon</NavLink> :null}
       {!this.props.user ?    <NavLink to="/login" className="navlink" exact style={{width: '100px',
           padding: '12px',
           margin: '0 6px 6px',
