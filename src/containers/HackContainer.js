@@ -13,18 +13,16 @@ class Hackcontainer extends React.Component {
         <HackathonCard hackathon={theHackathon} key={theHackathon.id} />
       ))
     }
-    if(hackathons){
-    if(hackathons.length!==0){
-      return  <div className="hackContainer">{hackathons}</div>
-    }
-    else{
+    if (hackathons) {
+      if (hackathons.length !== 0) {
+        return <div className='hackContainer'>{hackathons}</div>
+      } else {
+        return null
+      }
+    } else {
       return null
     }
   }
-  else{
-    return null
-  }
-}
 }
 
 const mapStateToProps = (state) => {

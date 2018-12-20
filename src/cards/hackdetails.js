@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { saveHackathon, deleteHackathon } from "../action/hackaction"
-import { Button} from 'semantic-ui-react'
+import { Button } from "semantic-ui-react"
 
 class Hackdetails extends React.Component {
   renderDetails = () => {
@@ -38,7 +38,9 @@ class Hackdetails extends React.Component {
               Save
             </Button>
           )}
-          <Button onClick={()=>this.props.deleteHackDetails()}>Go Back</Button>
+          <Button onClick={() => this.props.deleteHackDetails()}>
+            Go Back
+          </Button>
         </center>
       )
     }
@@ -48,10 +50,9 @@ class Hackdetails extends React.Component {
     this.props.deleteHackDetails()
   }
   render() {
-    if(this.props.hackDetails){
-      return <div className="hackDetails">{this.renderDetails()}</div>
-    }
-    else{
+    if (this.props.hackDetails) {
+      return <div className='hackDetails'>{this.renderDetails()}</div>
+    } else {
       return null
     }
   }

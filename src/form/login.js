@@ -2,7 +2,8 @@ import React from "react"
 import { connect } from "react-redux"
 import { login } from "../action/actions"
 import { withRouter } from "react-router-dom"
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form } from "semantic-ui-react"
+import Fade from 'react-reveal/Fade';
 
 class Login extends React.Component {
   state = {
@@ -22,32 +23,38 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <div className="logindiv">
-      <Form onSubmit={this.submitHandler}>
-        <center><h1>Login</h1></center>
-        <Form.Input
-          label="Username"
-          type='text'
-          value={this.state.username}
-          name='username'
-          onChange={this.changeHandler}
-          placeholder='Username'
-        />
-        <br />
-        <Form.Input
-          label="Password"
-          type='password'
-          value={this.state.password}
-          name='password'
-          onChange={this.changeHandler}
-          placeholder='Password'
-        />
-        <br />
-        <center>
-          <Button color="black" type='submit'>Submit</Button>
-        </center>
-    </Form>
-    </div>
+      <Fade>
+      <div className='logindiv'>
+        <Form onSubmit={this.submitHandler}>
+          <center>
+            <h1>Login</h1>
+          </center>
+          <Form.Input
+            label='Username'
+            type='text'
+            value={this.state.username}
+            name='username'
+            onChange={this.changeHandler}
+            placeholder='Username'
+          />
+          <br />
+          <Form.Input
+            label='Password'
+            type='password'
+            value={this.state.password}
+            name='password'
+            onChange={this.changeHandler}
+            placeholder='Password'
+          />
+          <br />
+          <center>
+            <Button color='black' type='submit'>
+              Submit
+            </Button>
+          </center>
+        </Form>
+      </div>
+      </Fade>
     )
   }
 }

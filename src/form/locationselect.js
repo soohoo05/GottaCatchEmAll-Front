@@ -40,7 +40,9 @@ class Locationselect extends React.Component {
         <option value='New York'>New York</option>
         <option value='North Carolina'>North Carolina</option>
         <option value='North Dakota'>North Dakota</option>
-        <option value='Northern Marianas Islands'>Northern Marianas Islands</option>
+        <option value='Northern Marianas Islands'>
+          Northern Marianas Islands
+        </option>
         <option value='Ohio'>Ohio</option>
         <option value='Oklahoma'>Oklahoma</option>
         <option value='Oregon'>Oregon</option>

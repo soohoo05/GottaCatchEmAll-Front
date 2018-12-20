@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Button} from 'semantic-ui-react'
+import { Button } from "semantic-ui-react"
 
 class Hackhomecard extends React.Component {
   getNames = () => {
@@ -44,17 +44,25 @@ class Hackhomecard extends React.Component {
       )
     }
     return (
-      <div className="HackHomeCard">
+      <div className='HackHomeCard'>
         <center>
-        <h3>Hosted by: {this.props.hackathon.host}</h3>
-        <img className="HackImage" src={this.props.hackathon.img} alt='hackathon' />
-        <h4>Date: {this.props.hackathon.date}</h4>
-        {this.props.hackathon.free ? <h4>Free Event</h4> : <h4>Paid Event</h4>}
-        <h4>{names}</h4>
-        <Button onClick={() => this.props.clickHandler(this.props.hackathon)}>
-          See more
-        </Button>
-      </center>
+          <h3>Hosted by: {this.props.hackathon.host}</h3>
+          <img
+            className='HackImage'
+            src={this.props.hackathon.img}
+            alt='hackathon'
+          />
+          <h4>Date: {this.props.hackathon.date}</h4>
+          {this.props.hackathon.free ? (
+            <h4>Free Event</h4>
+          ) : (
+            <h4>Paid Event</h4>
+          )}
+          <h4>{names}</h4>
+          <Button onClick={() => this.props.clickHandler(this.props.hackathon)}>
+            See more
+          </Button>
+        </center>
       </div>
     )
   }

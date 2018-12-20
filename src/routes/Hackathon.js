@@ -11,10 +11,10 @@ class Hackathons extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
-        <HackForm />
-        <HackContainer />
-        <HackDetails />
+        <div className="hackathon">
+          <HackForm />
+          <HackContainer />
+          <HackDetails />
         </div>
       </React.Fragment>
     )
@@ -26,4 +26,7 @@ const mapDispatchToProps = (dispatch) => {
     clearSearch: () => dispatch({ type: "CLEAR_SEARCH" })
   }
 }
-export default connect(null,mapDispatchToProps)(Hackathons)
+export default connect(
+  null,
+  mapDispatchToProps
+)(Hackathons)

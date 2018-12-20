@@ -3,7 +3,7 @@ let store = {
   hackathons: [],
   selectedhackathon: null,
   fetchedHackathons: null,
-  users:[]
+  users: []
 }
 
 export default function reducer(state = store, action) {
@@ -22,8 +22,8 @@ export default function reducer(state = store, action) {
       return { ...state, hackathons: null }
     case "FETCHED":
       return { ...state, fetchedHackathons: action.payload }
-      case 'SET_USERS':
-      return {...state,users:action.payload}
+    case "SET_USERS":
+      return { ...state, users: action.payload }
     default:
       return state
   }

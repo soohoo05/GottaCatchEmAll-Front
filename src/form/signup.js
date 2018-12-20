@@ -2,8 +2,9 @@ import React from "react"
 import { connect } from "react-redux"
 import { signUp } from "../action/actions"
 import { withRouter } from "react-router-dom"
-import { Button, Form } from 'semantic-ui-react'
-import {CloudinaryContext} from 'cloudinary-react';
+import { Button, Form } from "semantic-ui-react"
+import { CloudinaryContext } from "cloudinary-react"
+import Fade from 'react-reveal/Fade';
 
 class Signup extends React.Component {
   state = {
@@ -11,19 +12,21 @@ class Signup extends React.Component {
     username: "",
     password: "",
     email: "",
-    img:"https://ak1.picdn.net/shutterstock/videos/16685851/thumb/1.jpg"
+    img: "https://ak1.picdn.net/shutterstock/videos/16685851/thumb/1.jpg"
   }
   imageSubmit = () => {
-   var myUploadWidget;
-     myUploadWidget = window.cloudinary.openUploadWidget({
-       cloudName: 'dz1dbcszc',
-       uploadPreset: 'igzkbflf'},
-       (error, result) => {
-         if (result.info.secure_url){
-        this.setState({img:result.info.secure_url})
-           }
-         }
-       );
+    var myUploadWidget
+    myUploadWidget = window.cloudinary.openUploadWidget(
+      {
+        cloudName: "dz1dbcszc",
+        uploadPreset: "igzkbflf"
+      },
+      (error, result) => {
+        if (result.info.secure_url) {
+          this.setState({ img: result.info.secure_url })
+        }
+      }
+    )
   }
   changeHandler = (e) => {
     this.setState({
@@ -37,12 +40,14 @@ class Signup extends React.Component {
   }
   render() {
     return (
-        <div className="logindiv">
-
+      <Fade>
+      <div className='logindiv'>
         <Form onSubmit={this.submitHandler}>
-        <center><h1>Sign Up</h1></center>
+          <center>
+            <h1>Sign Up</h1>
+          </center>
           <Form.Input
-            label="Name"
+            label='Name'
             type='text'
             value={this.state.name}
             name='name'
@@ -51,7 +56,7 @@ class Signup extends React.Component {
           />
           <br />
           <Form.Input
-            label="Username"
+            label='Username'
             type='text'
             value={this.state.username}
             name='username'
@@ -60,7 +65,7 @@ class Signup extends React.Component {
           />
           <br />
           <Form.Input
-            label="Password"
+            label='Password'
             type='password'
             value={this.state.password}
             name='password'
@@ -69,7 +74,7 @@ class Signup extends React.Component {
           />
           <br />
           <Form.Input
-            label="Email"
+            label='Email'
             type='text'
             value={this.state.email}
             name='email'
@@ -77,16 +82,24 @@ class Signup extends React.Component {
             placeholder='Email'
           />
           <br />
-            <CloudinaryContext cloudName='dz1dbcszc' className="signupbuttons">
-              <Button className="fluid" color="black" id='upload_widget_opener' onClick={this.imageSubmit}>Upload a picture</Button>
-            </CloudinaryContext>
-          <br/>
-          <div className="signupbuttons">
-            <Button className="fluid" color="black" type='submit'>Submit</Button>
+          <CloudinaryContext cloudName='dz1dbcszc' className='signupbuttons'>
+            <Button
+              className='fluid'
+              color='black'
+              id='upload_widget_opener'
+              onClick={this.imageSubmit}>
+              Upload a picture
+            </Button>
+          </CloudinaryContext>
+          <br />
+          <div className='signupbuttons'>
+            <Button className='fluid' color='black' type='submit'>
+              Submit
+            </Button>
           </div>
-
         </Form>
       </div>
+      </Fade>
     )
   }
 }
@@ -99,4 +112,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null,mapDispatchToProps)(Signup))
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Signup)
+)

@@ -2,8 +2,8 @@ import React from "react"
 import LocationSelect from "./locationselect.js"
 import { submitQueryAction } from "../action/hackaction"
 import { connect } from "react-redux"
-import { Button, Form } from 'semantic-ui-react'
-
+import { Button, Form } from "semantic-ui-react"
+import Fade from 'react-reveal/Fade';
 class Hackform extends React.Component {
   state = {
     location: "",
@@ -15,9 +15,9 @@ class Hackform extends React.Component {
   handleLocation = (e) => {
     if (e.target.value === "---") {
       this.setState({ location: "" })
-    }else{
-    this.setState({ location: e.target.value })
-  }
+    } else {
+      this.setState({ location: e.target.value })
+    }
   }
   handleFree = (e) => {
     if (e.target.value === "Free") {
@@ -35,11 +35,14 @@ class Hackform extends React.Component {
       (this.state.toDate.length === 0 && this.state.fromDate.length !== 0)
     ) {
       alert("Invalid date Range")
-    }
-      else if(this.state.toDate.length===0 && this.state.fromDate.length===0 && this.state.location.length===0 && this.state.free==="either"){
-        alert("At least one parameter needed")
-      }
-     else {
+    } else if (
+      this.state.toDate.length === 0 &&
+      this.state.fromDate.length === 0 &&
+      this.state.location.length === 0 &&
+      this.state.free === "either"
+    ) {
+      alert("At least one parameter needed")
+    } else {
       this.props.submitQuery(this.state)
     }
   }
@@ -52,49 +55,55 @@ class Hackform extends React.Component {
   }
   render() {
     return (
-      <div className="hackdiv">
-        <form className="ui form" onSubmit={(e) => this.submitHandler(e)}>
-        <div className="field">
-        <h3>Location</h3>
-        <LocationSelect
-          handleChange={this.handleLocation}
-          value={this.state.location}
-        />
-        </div>
-        <div className="field">
-        <h3>Free</h3>
-        <select onChange={this.handleFree}>
-          <option value='---'>---</option>
-          <option value='Free'>Free</option>
-          <option value='Not Free'>Not Free</option>
-        </select>
-        </div>
-        <div className="field">
-        <h3>Date Range</h3>
-        <input
-          type='date'
-          format='YYYY MM DD'
-          onChange={(e) => this.handleFrom(e)}
-          value={this.state.fromDate}
-        />
-    </div>
-      <Button color="black" onClick={() => this.setState({ fromDate: "" })}>Clear</Button>
-      <div className="field">
-        <br />
-      <h3>To</h3>
-        <Form.Input
-          type='date'
-          format='YYYY MM DD'
-          onChange={(e) => this.handleTo(e)}
-          value={this.state.toDate}
-        />
-      </div>
-      <Button color="black" onClick={() => this.setState({ toDate: "" })}>Clear</Button>
-        <br />
-        <br />
-          <input className="ui green button" type='submit' />
+      <Fade>
+      <div className='hackdiv'>
+        <form className='ui form' onSubmit={(e) => this.submitHandler(e)}>
+          <div className='field'>
+            <h3>Location</h3>
+            <LocationSelect
+              handleChange={this.handleLocation}
+              value={this.state.location}
+            />
+          </div>
+          <div className='field'>
+            <h3>Free</h3>
+            <select onChange={this.handleFree}>
+              <option value='---'>---</option>
+              <option value='Free'>Free</option>
+              <option value='Not Free'>Not Free</option>
+            </select>
+          </div>
+          <div className='field'>
+            <h3>Date Range</h3>
+            <input
+              type='date'
+              format='YYYY MM DD'
+              onChange={(e) => this.handleFrom(e)}
+              value={this.state.fromDate}
+            />
+          </div>
+          <Button color='black' onClick={() => this.setState({ fromDate: "" })}>
+            Clear
+          </Button>
+          <div className='field'>
+            <br />
+            <h3>To</h3>
+            <Form.Input
+              type='date'
+              format='YYYY MM DD'
+              onChange={(e) => this.handleTo(e)}
+              value={this.state.toDate}
+            />
+          </div>
+          <Button color='black' onClick={() => this.setState({ toDate: "" })}>
+            Clear
+          </Button>
+          <br />
+          <br />
+          <input className='ui green button' type='submit' />
         </form>
       </div>
+      </Fade>
     )
   }
 }
@@ -103,4 +112,7 @@ const mapDispatchToProps = (dispatch) => {
     submitQuery: (search) => dispatch(submitQueryAction(search))
   }
 }
-export default connect(null,mapDispatchToProps)(Hackform)
+export default connect(
+  null,
+  mapDispatchToProps
+)(Hackform)
