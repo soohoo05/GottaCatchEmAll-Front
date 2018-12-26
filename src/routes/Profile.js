@@ -6,8 +6,11 @@ import { CloudinaryContext } from "cloudinary-react"
 import { changePicture } from "../action/actions"
 import { Button } from "semantic-ui-react"
 import Bounce from 'react-reveal/Bounce';
-
+import {deleteUser} from '../action/actions'
 class Profile extends Component {
+  state={
+    delete:false
+  }
   componentWillUnmount() {
     this.props.deleteHackDetails()
   }
@@ -35,6 +38,11 @@ class Profile extends Component {
       }
     )
   }
+yeshandler = () => {
+  this.props.deleteUser(this.props.user)
+  this.props.history.replace('/signup')
+}
+
 
   render() {
     return (
@@ -60,6 +68,13 @@ class Profile extends Component {
                   Change your Profile Picture
                 </Button>
               </CloudinaryContext>
+              <br/>
+              <Button color="black" onClick={()=>this.props.history.replace('/editprofile')}>Edit Profile</Button>
+              <br/>
+              <br/>
+              <Button color="black" onClick={e=>this.setState({delete:true})}>Delete Profile</Button>
+              <br/>
+              {this.state.delete ? <React.Fragment><Button onClick={e=>this.yeshandler()}>Yes</Button><Button onClick={e=>this.setState({delete:false})}>No</Button></React.Fragment>:null}
             </div>
           </div>
         </center>
@@ -85,8 +100,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteHackDetails: () => dispatch({ type: "CLEAR_DETAILS" }),
-    changeproPicture: (picture, userId) =>
-      dispatch(changePicture(picture, userId))
+    changeproPicture: (picture, userId) =>  dispatch(changePicture(picture, userId)),
+    deleteUser:(user) => dispatch(deleteUser(user))
   }
 }
 

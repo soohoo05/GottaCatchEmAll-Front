@@ -8,7 +8,8 @@ import Fade from 'react-reveal/Fade';
 class Login extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    errors:[]
   }
 
   changeHandler = (e) => {
@@ -17,18 +18,36 @@ class Login extends React.Component {
     })
   }
 
-  submitHandler = (e) => {
+  submitHandler = (e,state) => {
     e.preventDefault()
+    let emptykeys=[]
+  for(var key in state){
+    if (state[key]===""){
+      emptykeys.push(key)
+    }
+  }
+  if(emptykeys.length!==0){
+  let emptyKeysString=emptykeys.join(', ').replace(/, ([^,]*)$/, ' and $1')
+  emptyKeysString+=" cannot be blank"
+  this.setState({errors:emptyKeysString})
+}
+else{
+  let noErrorState=Object.assign({},state)
+  delete noErrorState.errors
     this.props.loginHandler(this.state, this.props.history)
+  }
   }
   render() {
     return (
       <Fade>
       <div className='logindiv'>
-        <Form onSubmit={this.submitHandler}>
+        <Form onSubmit={e=>this.submitHandler(e,this.state)}>
           <center>
             <h1>Login</h1>
           </center>
+          <br/>
+            <center><p className="errorMessage">{this.state.errors}</p></center>
+          <br/>
           <Form.Input
             label='Username'
             type='text'

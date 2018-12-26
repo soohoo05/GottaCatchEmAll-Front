@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import UserCard from "../cards/UserCard"
-import Bounce from 'react-reveal/Bounce';
 
 class Userscontainer extends React.Component {
   render() {

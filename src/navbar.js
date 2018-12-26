@@ -63,7 +63,7 @@ class Navbar extends React.Component {
                 textDecoration: "none",
                 color: "white"
               }}>
-              Hackathons
+              Find Hackathons
             </NavLink>
           ) : null}
           {this.props.user ? (
@@ -81,7 +81,7 @@ class Navbar extends React.Component {
                 textDecoration: "none",
                 color: "white"
               }}>
-              Add a Hackathon
+              Submit a Hackathon
             </NavLink>
           ) : null}
           {!this.props.user ? (

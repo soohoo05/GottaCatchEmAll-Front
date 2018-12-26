@@ -2,22 +2,41 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import { Button } from "semantic-ui-react"
 import Bounce from 'react-reveal/Bounce';
+// onMouseOver={e =>e.currentTarget.src=user.img}
+// onMouseOut={e => e.currentTarget.src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIygVR6v25SAX2tB4I1vTNefv4YLalTwmczTJJML7ERA-rdZIXA"}
 
 class Usercard extends React.Component {
+  Over= (e) =>{
+  e.target.style.transition="all .7s"
+  e.target.style.WebkitTransition="all.7s"
+  e.target.style.opacity=0
+  }
+  Out=(e)=>{
+    e.target.style.transition="all .7s"
+    e.target.style.WebkitTransition="all.7s"
+    e.target.style.opacity=1
+  }
   render() {
     let { user } = this.props
     return (
       <Bounce down>
       <div className='userDiv'>
-        <div>
+        <div className="usersimgs">
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIygVR6v25SAX2tB4I1vTNefv4YLalTwmczTJJML7ERA-rdZIXA"
             alt='profile'
             height='250px'
             width='250px'
-            className='ProImg'
-            onMouseOver={e =>e.currentTarget.src=user.img}
-            onMouseOut={e => e.currentTarget.src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIygVR6v25SAX2tB4I1vTNefv4YLalTwmczTJJML7ERA-rdZIXA"}
+            className='userimage userimage1'
+            onMouseOver={e =>this.Over(e)}
+            onMouseOut={e =>this.Out(e)}
+          />
+        <img
+          src={user.img}
+          alt='profile'
+          height='250px'
+          width='250px'
+          className='userimage userimage2'
           />
         </div>
         <div>

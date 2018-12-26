@@ -13,6 +13,17 @@ class Usersdisplay extends React.Component {
       .get(`http://localhost:3000/users/${username}`)
       .then((resp) => this.setState({ user: resp.data }))
   }
+
+  Over= (e) =>{
+  e.target.style.transition="all .7s"
+  e.target.style.WebkitTransition="all.7s"
+  e.target.style.opacity=0
+  }
+  Out=(e)=>{
+    e.target.style.transition="all .7s"
+    e.target.style.WebkitTransition="all.7s"
+    e.target.style.opacity=1
+  }
   render() {
     return (
 
@@ -24,8 +35,16 @@ class Usersdisplay extends React.Component {
             alt='profile'
             height='250px'
             width='250px'
-            onMouseOver={e => e.currentTarget.src=this.state.user.img}
-            onMouseOut={e=> e.currentTarget.src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIygVR6v25SAX2tB4I1vTNefv4YLalTwmczTJJML7ERA-rdZIXA"}
+              className='userimage userimage1'
+            onMouseOver={e => this.Over(e)}
+            onMouseOut={e=> this.Out(e)}
+          />
+        <img
+          src={this.state.user.img}
+          alt='profile'
+          height='250px'
+          width='250px'
+            className='userimage userimage2'
           />
           <h1>Name: {this.state.user.name}</h1>
           <h2>Email: {this.state.user.email}</h2>

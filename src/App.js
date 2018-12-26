@@ -14,6 +14,7 @@ import NoMatch from "./routes/NoMatch.js"
 import Users from "./routes/Users"
 import UsersDisplay from "./routes/UsersDisplay"
 import HackAdd from "./form/hackadd"
+import Edit from "./form/edit"
 class App extends Component {
   componentDidMount = () => {
     let token = localStorage.getItem("token")
@@ -58,6 +59,7 @@ class App extends Component {
           <Route exact path='/users' component={Users} />
           <Route exact path='/user/:username' component={UsersDisplay} />
           <Route exact path='/addahackathon' component={HackAdd} />
+          <Route exact path='/editProfile' component={Edit} />
           <Route component={NoMatch} />
         </Switch>
       </div>

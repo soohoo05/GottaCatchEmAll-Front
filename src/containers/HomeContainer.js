@@ -18,7 +18,7 @@ class Homecontainer extends React.Component {
       if (this.props.all.length !== 0) {
         return <Bounce up><div>{renderedHomeCards}</div></Bounce>
       } else {
-        return <h1 className='headerh1'>No Hackathons being attended</h1>
+        return <center><h1 className='headerh1'>No Hackathons being attended</h1></center>
       }
     } else {
       return null

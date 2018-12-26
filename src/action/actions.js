@@ -51,3 +51,27 @@ export const changePicture = (picture, userId) => {
       .then((resp) => dispatch({ type: "SET_USER", payload: resp.data }))
   }
 }
+
+export const deleteUser = (user) => {
+localStorage.clear()
+  return (dispatch) => {
+    return axios.delete(`http://localhost:3000/users/${user.user_id}`)
+    .then((resp) => dispatch({type: 'DELETE_USER'}))
+  }
+}
+
+export const edit = (id,user,history) => {
+  return (dispatch) => {
+    return axios.patch(`http://localhost:3000/users/${id}`,{
+      name:user.name,
+      username:user.username,
+      password:user.password,
+      email:user.email
+    })
+    .then(resp => {
+    dispatch({type:'SET_USER',payload:resp.data})
+    history.replace('/profile')
+  })
+
+  }
+}

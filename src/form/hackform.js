@@ -9,7 +9,8 @@ class Hackform extends React.Component {
     location: "",
     free: "either",
     fromDate: "",
-    toDate: ""
+    toDate: "",
+    errors:""
   }
 
   handleLocation = (e) => {
@@ -34,14 +35,14 @@ class Hackform extends React.Component {
       (this.state.toDate.length !== 0 && this.state.fromDate.length === 0) ||
       (this.state.toDate.length === 0 && this.state.fromDate.length !== 0)
     ) {
-      alert("Invalid date Range")
+      this.setState({errors:"Invalid date Range"})
     } else if (
       this.state.toDate.length === 0 &&
       this.state.fromDate.length === 0 &&
       this.state.location.length === 0 &&
       this.state.free === "either"
     ) {
-      alert("At least one parameter needed")
+      this.setState({errors:"At least one parameter needed"})
     } else {
       this.props.submitQuery(this.state)
     }
@@ -58,6 +59,8 @@ class Hackform extends React.Component {
       <Fade>
       <div className='hackdiv'>
         <form className='ui form' onSubmit={(e) => this.submitHandler(e)}>
+          <center><p className="errorMessage">{this.state.errors}</p></center>
+          <br/>
           <div className='field'>
             <h3>Location</h3>
             <LocationSelect

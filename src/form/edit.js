@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { signUp } from "../action/actions"
+import { edit } from "../action/actions"
 import { withRouter } from "react-router-dom"
 import { Button, Form } from "semantic-ui-react"
 import { CloudinaryContext } from "cloudinary-react"
@@ -15,6 +15,8 @@ class Signup extends React.Component {
     img: "https://ak1.picdn.net/shutterstock/videos/16685851/thumb/1.jpg",
     errors:[]
   }
+
+
   imageSubmit = () => {
     var myUploadWidget
     myUploadWidget = window.cloudinary.openUploadWidget(
@@ -49,9 +51,10 @@ class Signup extends React.Component {
   this.setState({errors:emptyKeysString})
 }
 else{
+  debugger
   let noErrorState=Object.assign({},state)
   delete noErrorState.errors
-    this.props.setUser(noErrorState, this.props.history)
+    this.props.setUser(this.props.user.user_id,noErrorState, this.props.history)
   }
   }
   render() {
@@ -60,7 +63,7 @@ else{
       <div className='logindiv'>
         <Form onSubmit={e=>this.submitHandler(e,this.state)}>
           <center>
-            <h1>Sign Up</h1>
+            <h1>Edit Profile</h1>
             <br/>
               <center><p className="errorMessage">{this.state.errors}</p></center>
             <br/>
@@ -71,7 +74,7 @@ else{
             value={this.state.name}
             name='name'
             onChange={this.changeHandler}
-            placeholder='Name'
+            placeholder={this.props.user.name}
           />
           <br />
           <Form.Input
@@ -80,7 +83,7 @@ else{
             value={this.state.username}
             name='username'
             onChange={this.changeHandler}
-            placeholder='Username'
+            placeholder={this.props.user.username}
           />
           <br />
           <Form.Input
@@ -98,19 +101,9 @@ else{
             value={this.state.email}
             name='email'
             onChange={this.changeHandler}
-            placeholder='Email'
+            placeholder={this.props.user.email}
           />
         </Form>
-          <br />
-          <CloudinaryContext cloudName='dz1dbcszc' className='signupbuttons'>
-            <Button
-              className='fluid'
-              color='black'
-              id='upload_widget_opener'
-              onClick={this.imageSubmit}>
-              Upload a picture
-            </Button>
-          </CloudinaryContext>
           <br />
           <div className='signupbuttons'>
             <Button className='fluid' color='black' type='submit' onClick={(e)=>this.submitHandler(e,this.state)}>
@@ -126,15 +119,19 @@ else{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUser: (user, history) => {
-      dispatch(signUp(user, history))
+    setUser: (id, user, history) => {
+      dispatch(edit(id, user, history))
     }
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(Signup)
 )
