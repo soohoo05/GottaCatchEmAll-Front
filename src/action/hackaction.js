@@ -47,3 +47,12 @@ export const fetchAll = () => {
     })
   }
 }
+
+export const fetchRecent = (state) => {
+  console.log(state)
+  return (dispatch) => {
+    return axios.get(`http://localhost:3000/recent/${state}`).then((res)=>{
+      dispatch({type:"FETCHED",payload:res.data})
+    })
+  }
+}

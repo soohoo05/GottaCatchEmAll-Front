@@ -45,6 +45,9 @@ class Hackform extends React.Component {
       this.setState({errors:"At least one parameter needed"})
     } else {
       this.props.submitQuery(this.state)
+      this.setState({
+        errors:""
+      })
     }
   }
 

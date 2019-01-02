@@ -2,7 +2,7 @@ import React from "react"
 class Locationselect extends React.Component {
   render() {
     return (
-      <select value={this.props.value} onChange={this.props.handleChange}>
+      <select className="ui search dropdown" value={this.props.value} onChange={e => this.props.handleChange(e)}>
         <option value='---'>---</option>
         <option value='Alabama'>Alabama</option>
         <option value='Alaska'>Alaska</option>

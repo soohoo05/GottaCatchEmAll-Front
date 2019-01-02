@@ -17,6 +17,7 @@ import HackAdd from "./form/hackadd"
 import Edit from "./form/edit"
 class App extends Component {
   componentDidMount = () => {
+    fetch("http://localhost:3000/deletepast")
     let token = localStorage.getItem("token")
     if (token) {
       fetch("http://localhost:3000/current_user", {
@@ -40,15 +41,7 @@ class App extends Component {
       <div className='whole'>
         <Logo />
         <NavBar />
-        <center className='music'>
-          <iframe
-            src='https://open.spotify.com/embed/artist/45eNHdiiabvmbp4erw26rg'
-            width='300'
-            height='80'
-            allowtransparency='true'
-            allow='encrypted-media'
-          />
-        </center>
+
         <br />
         <Switch>
           <Route exact path='/' component={Home} />

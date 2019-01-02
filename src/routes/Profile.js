@@ -74,17 +74,20 @@ yeshandler = () => {
               <br/>
               <Button color="black" onClick={e=>this.setState({delete:true})}>Delete Profile</Button>
               <br/>
-              {this.state.delete ? <React.Fragment><Button onClick={e=>this.yeshandler()}>Yes</Button><Button onClick={e=>this.setState({delete:false})}>No</Button></React.Fragment>:null}
+              <br/>
+              {this.state.delete ? <React.Fragment><h1 className="errorMessage">Are You sure?</h1><br/><Button onClick={e=>this.yeshandler()}>Yes</Button><Button onClick={e=>this.setState({delete:false})}>No</Button></React.Fragment>:null}
             </div>
           </div>
         </center>
       </Bounce>
+      <center>
         <div className='profilehackcontainer'>
           <Bounce down>
             <center><h1 className='headerh1'>Your Hackathons</h1></center>
             </Bounce>
           {this.showHackContainer()}
         </div>
+        </center>
         <HackDetails />
       </div>
     )

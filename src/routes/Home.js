@@ -1,18 +1,28 @@
 import React from "react"
 import { connect } from "react-redux"
-import { fetchAll } from "../action/hackaction"
+import { fetchRecent } from "../action/hackaction"
 import Homecontainer from "../containers/HomeContainer"
 import Hackdetails from "../cards/hackdetails"
+import LocationSelect from "../form/locationselect.js"
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.fetchAllAttended()
+    this.props.fetchRecent("---")
   }
+  handleLocationSelect = (e) => {
+    let state=e.target.value
+    this.props.fetchRecent(state)
 
+  }
   render() {
     return (
       <React.Fragment>
-        <Homecontainer />
+      <br/>
+      <center>
+      <LocationSelect handleChange={this.handleLocationSelect}/>
+      </center>
+
+      <Homecontainer />
         <Hackdetails />
       </React.Fragment>
     )
@@ -21,8 +31,8 @@ class Home extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllAttended: () => {
-      dispatch(fetchAll())
+    fetchRecent: (state) => {
+      dispatch(fetchRecent(state))
     }
   }
 }

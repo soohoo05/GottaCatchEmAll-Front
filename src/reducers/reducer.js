@@ -21,6 +21,7 @@ export default function reducer(state = store, action) {
     case "CLEAR_SEARCH":
       return { ...state, hackathons: null }
     case "FETCHED":
+    console.log(action.payload)
       return { ...state, fetchedHackathons: action.payload }
     case "SET_USERS":
       return { ...state, users: action.payload }
