@@ -28,7 +28,7 @@ class Hackdetails extends React.Component {
           <Button onClick={()=>window.open(this.props.hackDetails.url)}>Go to Website</Button>
             <br/>
           <br/>
-          {saved ? (
+          {this.props.user ? (saved ? (
             <Button onClick={this.deletedhackathon}>Delete</Button>
           ) : (
             <Button
@@ -40,8 +40,8 @@ class Hackdetails extends React.Component {
               }>
               Save
             </Button>
-          )}
-          <br/>
+          )) : null}
+          {this.props.user? <br/>:null}
           <br/>
           <Button onClick={() => this.props.deleteHackDetails()}>
             Go Back

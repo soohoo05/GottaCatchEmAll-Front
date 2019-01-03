@@ -1,6 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
 import HackathonCard from "../cards/hackathoncard"
+import Wobble from 'react-reveal/Wobble';
+import Fade from 'react-reveal/Fade';
 class Hackcontainer extends React.Component {
   render() {
     let hackathons
@@ -17,10 +19,10 @@ class Hackcontainer extends React.Component {
       if (hackathons.length !== 0) {
         return <div className='hackContainer'>{hackathons}</div>
       } else {
-        return null
+        return <Wobble><h1 className='NothingHere'>Nothing here!</h1></Wobble>
       }
     } else {
-      return null
+      return <Wobble><h1 className='NothingHere'>Nothing here!</h1></Wobble>
     }
   }
 }

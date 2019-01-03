@@ -245,6 +245,14 @@ position: fixed;
   border-radius: 25px;
 }
 
+.NothingHere{
+  text-shadow: 2px 2px #FFFFFF;
+  display: inline;
+  background-color: lightgrey;
+  padding:20px;
+  border-radius: 25px;
+  position:absolute;
+}
 .wholeprofile{
     display: inline-flex;
     width:100%;
